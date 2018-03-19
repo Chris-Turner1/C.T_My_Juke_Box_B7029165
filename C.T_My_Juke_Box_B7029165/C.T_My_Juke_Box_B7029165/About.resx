@@ -117,4 +117,11 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="Descritption_Of_Juke_Box.Text" xml:space="preserve">
+    <value>Description:                                          
+
+The "My Juke Box v2.0 application was developed as an example to showcase my studies as a first year graduate on the mdoule "Programming for Computing at Sheffield Hallam University.           
+
+The application shows the use of Arrays </value>
+  </data>
 </root>

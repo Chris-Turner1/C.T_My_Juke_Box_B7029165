@@ -19,6 +19,11 @@ namespace C.T_My_Juke_Box_B7029165
 
         private void AboutForm_Load(object sender, EventArgs e)
         {
+         
+        }
+
+        private void My_Juke_Box_Label_Click(object sender, EventArgs e)
+        {
 
         }
     }
