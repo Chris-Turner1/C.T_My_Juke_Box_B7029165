@@ -162,6 +162,7 @@
             this.Ok_Button_For_Setup_Form.TabIndex = 12;
             this.Ok_Button_For_Setup_Form.Text = "Ok";
             this.Ok_Button_For_Setup_Form.UseVisualStyleBackColor = true;
+            this.Ok_Button_For_Setup_Form.Click += new System.EventHandler(this.Ok_Button_For_Setup_Form_Click);
             // 
             // Cancel_Button_For_Setup_Form
             // 
@@ -171,6 +172,7 @@
             this.Cancel_Button_For_Setup_Form.TabIndex = 13;
             this.Cancel_Button_For_Setup_Form.Text = "Cancel Button ";
             this.Cancel_Button_For_Setup_Form.UseVisualStyleBackColor = true;
+            this.Cancel_Button_For_Setup_Form.Click += new System.EventHandler(this.Cancel_Button_For_Setup_Form_Click);
             // 
             // Imported_Tracks_Label_For_Setup_Form
             // 

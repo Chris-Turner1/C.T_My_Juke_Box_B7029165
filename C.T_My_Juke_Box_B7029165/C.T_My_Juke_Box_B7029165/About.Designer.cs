@@ -76,6 +76,7 @@
             this.Ok_Button.TabIndex = 3;
             this.Ok_Button.Text = "Ok";
             this.Ok_Button.UseVisualStyleBackColor = true;
+            this.Ok_Button.Click += new System.EventHandler(this.Ok_Button_Click);
             // 
             // Description_Of_Juke_Box
             // 

@@ -32,8 +32,8 @@
             this.axWindowsMediaPlayer1 = new AxWMPLib.AxWindowsMediaPlayer();
             this.PlayList = new System.Windows.Forms.ListBox();
             this.PresentlyPlaying = new System.Windows.Forms.TextBox();
-            this.listBox1 = new System.Windows.Forms.ListBox();
-            this.hScrollBar1 = new System.Windows.Forms.HScrollBar();
+            this.listBox_Below_Genre_txtBox = new System.Windows.Forms.ListBox();
+            this.hScrollBar1_On_JukeBoxForm = new System.Windows.Forms.HScrollBar();
             this.Genre_txtBox = new System.Windows.Forms.TextBox();
             this.CopyRightNoticeLabel = new System.Windows.Forms.Label();
             this.MenuStrip_For_Juke_Box_Form = new System.Windows.Forms.MenuStrip();
@@ -75,22 +75,22 @@
             this.PresentlyPlaying.Size = new System.Drawing.Size(288, 31);
             this.PresentlyPlaying.TabIndex = 3;
             // 
-            // listBox1
+            // listBox_Below_Genre_txtBox
             // 
-            this.listBox1.FormattingEnabled = true;
-            this.listBox1.ItemHeight = 16;
-            this.listBox1.Location = new System.Drawing.Point(205, 226);
-            this.listBox1.Name = "listBox1";
-            this.listBox1.SelectionMode = System.Windows.Forms.SelectionMode.None;
-            this.listBox1.Size = new System.Drawing.Size(227, 84);
-            this.listBox1.TabIndex = 4;
+            this.listBox_Below_Genre_txtBox.FormattingEnabled = true;
+            this.listBox_Below_Genre_txtBox.ItemHeight = 16;
+            this.listBox_Below_Genre_txtBox.Location = new System.Drawing.Point(205, 226);
+            this.listBox_Below_Genre_txtBox.Name = "listBox_Below_Genre_txtBox";
+            this.listBox_Below_Genre_txtBox.SelectionMode = System.Windows.Forms.SelectionMode.None;
+            this.listBox_Below_Genre_txtBox.Size = new System.Drawing.Size(227, 84);
+            this.listBox_Below_Genre_txtBox.TabIndex = 4;
             // 
-            // hScrollBar1
+            // hScrollBar1_On_JukeBoxForm
             // 
-            this.hScrollBar1.Location = new System.Drawing.Point(193, 313);
-            this.hScrollBar1.Name = "hScrollBar1";
-            this.hScrollBar1.Size = new System.Drawing.Size(250, 25);
-            this.hScrollBar1.TabIndex = 5;
+            this.hScrollBar1_On_JukeBoxForm.Location = new System.Drawing.Point(193, 313);
+            this.hScrollBar1_On_JukeBoxForm.Name = "hScrollBar1_On_JukeBoxForm";
+            this.hScrollBar1_On_JukeBoxForm.Size = new System.Drawing.Size(250, 25);
+            this.hScrollBar1_On_JukeBoxForm.TabIndex = 5;
             // 
             // Genre_txtBox
             // 
@@ -149,8 +149,8 @@
             this.ClientSize = new System.Drawing.Size(644, 701);
             this.Controls.Add(this.CopyRightNoticeLabel);
             this.Controls.Add(this.Genre_txtBox);
-            this.Controls.Add(this.hScrollBar1);
-            this.Controls.Add(this.listBox1);
+            this.Controls.Add(this.hScrollBar1_On_JukeBoxForm);
+            this.Controls.Add(this.listBox_Below_Genre_txtBox);
             this.Controls.Add(this.PresentlyPlaying);
             this.Controls.Add(this.PlayList);
             this.Controls.Add(this.axWindowsMediaPlayer1);
@@ -174,8 +174,8 @@
         private AxWMPLib.AxWindowsMediaPlayer axWindowsMediaPlayer1;
         private System.Windows.Forms.ListBox PlayList;
         private System.Windows.Forms.TextBox PresentlyPlaying;
-        private System.Windows.Forms.ListBox listBox1;
-        private System.Windows.Forms.HScrollBar hScrollBar1;
+        private System.Windows.Forms.ListBox listBox_Below_Genre_txtBox;
+        private System.Windows.Forms.HScrollBar hScrollBar1_On_JukeBoxForm;
         private System.Windows.Forms.TextBox Genre_txtBox;
         private System.Windows.Forms.Label CopyRightNoticeLabel;
         private System.Windows.Forms.MenuStrip MenuStrip_For_Juke_Box_Form;

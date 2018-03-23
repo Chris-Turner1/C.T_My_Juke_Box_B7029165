@@ -26,5 +26,10 @@ namespace C.T_My_Juke_Box_B7029165
         {
 
         }
+
+        private void Ok_Button_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
     }
 }

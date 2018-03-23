@@ -16,5 +16,15 @@ namespace C.T_My_Juke_Box_B7029165
         {
             InitializeComponent();
         }
+
+        private void Ok_Button_For_Setup_Form_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void Cancel_Button_For_Setup_Form_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
     }
 }
