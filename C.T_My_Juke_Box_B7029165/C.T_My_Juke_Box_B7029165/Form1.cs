@@ -29,7 +29,8 @@ namespace C.T_My_Juke_Box_B7029165
         {
             InitializeComponent();          
 
-            ReadMediaFile(); // empty construct // shouldn't have to look at this function now; its done
+            ReadMediaFile(); // empty construct 
+            // shouldn't have to look at this function now; its done
 
             PopulateTextBoxes(); // Fuction (method) to read the text
         }
@@ -47,10 +48,10 @@ namespace C.T_My_Juke_Box_B7029165
 
         private void aboutToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            AboutForm about = new AboutForm(); // new into the memory known as the heap from the stack
+            AboutForm about = new AboutForm(); 
             about.ShowDialog();
         }
-
+        // "new" into the memory known as the heap from the stack
         private void MenuStrip_For_Juke_Box_Form_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
         {
 
@@ -95,8 +96,10 @@ namespace C.T_My_Juke_Box_B7029165
                 genreContents.name = lines.ToArray()[iLineCounter]; // name of genre 
                 genreContents.tracks = new List<string>(); // name of track 
 
-                iLineCounter++; // increment iLineCounter if number of tracks is less then the number of genres 
+                iLineCounter++; 
                 for (int i = 0; i < numberOfTracks; i++)
+                 // "iLineCounter++" 
+                 //increment iLineCounter if number of tracks is less then the number of genres 
                 {
                     genreContents.tracks.Add(lines.ToArray()[iLineCounter]);
                     iLineCounter++;
