@@ -29,9 +29,9 @@ namespace C.T_My_Juke_Box_B7029165
         {
             InitializeComponent();          
 
-            ReadMediaFile(); // empty construct 
+            ReadMediaFile(); // empty construct // shouldn't have to look at this function now; its done
 
-            PopulateTextBoxes(0);
+            PopulateTextBoxes(); // Fuction (method) to read the text
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -72,24 +72,28 @@ namespace C.T_My_Juke_Box_B7029165
 
             int iLineCounter = 0; // zero is the number of titles 
 
-            int numberOfGenres = Convert.ToInt32(lines.ToArray()[0]); // converts integer to string 
-            for(int i = 0; i < numberOfGenres; i++) // number of genres is less than number of titles then increment
+            int numberOfGenres = Convert.ToInt32(lines.ToArray()[0]); 
+            // converts integer to string 
+            for(int i = 0; i < numberOfGenres; i++) 
+             // number of genres is less than number of titles then increment
             {
                 genres.Add(new GenreContents()); // keeps adding another genre if so 
             }
 
 
             iLineCounter = 1; // 1 is the number of tracks 
-            for (int genreNumber = 0; genreNumber < numberOfGenres; genreNumber++) 
-                // genre number is less than number of genres, genre number increment to allow to add more  
+            for (int genreNumber = 0; genreNumber < numberOfGenres; genreNumber++)
+                // genre number is less than number of genres, 
+               // genre number increment to allow to add more  
             {
-                int numberOfTracks = Convert.ToInt32(lines.ToArray()[iLineCounter]); // an Array is in square brackets 
+                int numberOfTracks = Convert.ToInt32(lines.ToArray()[iLineCounter]); 
+                // an Array is in square brackets 
 
                 iLineCounter++;
 
                 GenreContents genreContents;
-                genreContents.name = lines.ToArray()[iLineCounter];
-                genreContents.tracks = new List<string>();
+                genreContents.name = lines.ToArray()[iLineCounter]; // name of genre 
+                genreContents.tracks = new List<string>(); // name of track 
 
                 iLineCounter++; // increment iLineCounter if number of tracks is less then the number of genres 
                 for (int i = 0; i < numberOfTracks; i++)
@@ -101,17 +105,23 @@ namespace C.T_My_Juke_Box_B7029165
             }
         }
 
-        void PopulateTextBoxes(int Genre_txtBox) 
+        void PopulateTextBoxes() 
         {
-            // Genre_txtBox.Text = genre [genre]. // this is the textbox I am trying to load
-            // Output to screen using genre[0]
+            // Genre_txtBox.Text = genre [genre]. 
+            // for each genre, this is the textbox I am trying to load . name at the end 
+            // Output to screen using genre[0] // zero is the first genre 
 
-            for(int i = 0; i < genres.Count(); i++) // output to screen list of genres 
+            for(int i = 0; i < genres.Count(); i++) 
+             // to get data out, to output to screen list of genres 
             {
                 // Make a textbox and use genre[i].name // output to screen the name of tracks 
                 for(int j = 0; j < genres[i].tracks.Count(); j++)
                 {
                     // Add each track to the textbox using genres[i].tracks[j]
+                    Genre_txtBox.Text += genres[i].name + Environment.NewLine;
+                    listBox_Below_Genre_txtBox.Text += genres[j].tracks + Environment.NewLine; 
+                    //  Environment.Newline will bring out the name and tracks of genres
+                    // onto new lines in the text box if multiline is set to "true" in properties
                 }
             }
         }
