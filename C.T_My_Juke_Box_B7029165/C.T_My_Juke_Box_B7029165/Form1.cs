@@ -148,11 +148,15 @@ namespace C.T_My_Juke_Box_B7029165
             int index = this.listBox_Below_Genre_txtBox.IndexFromPoint(e.Location);
             if (index != System.Windows.Forms.ListBox.NoMatches)
             {
-                // // Contains the file name for my song.
+                // Contains the file name for my song.
 
                 string songName = genres[hScrollBar1_On_JukeBoxForm.Value].tracks[index]; // this is my song name 
-                System.Media.SoundPlayer player = new System.Media.SoundPlayer(@"c:\mywavfile.wav");
-                player.Play(); 
+                                                                                          //System.Media.SoundPlayer player = new System.Media.SoundPlayer(@"c:\Music\Media.txt\Amy Winehouse - Rehab.wav");
+                                                                                          //player.Play(); 
+                WMPLib.WindowsMediaPlayer wplayer = new WMPLib.WindowsMediaPlayer();
+
+                wplayer.URL = Directory.GetCurrentDirectory() + "\\Music\\" + "songName";
+                wplayer.controls.play();
             }
             // 1 if statements to go inside of here is all i need 
             //  to make a track play when I double click on it, by using .append 
@@ -166,6 +170,7 @@ namespace C.T_My_Juke_Box_B7029165
             
             }
             */
-        }  
+
+        }
     }
 }
