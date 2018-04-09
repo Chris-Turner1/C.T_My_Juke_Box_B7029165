@@ -86,7 +86,7 @@
             this.listBox_Below_Genre_txtBox.Size = new System.Drawing.Size(227, 84);
             this.listBox_Below_Genre_txtBox.TabIndex = 4;
             this.listBox_Below_Genre_txtBox.SelectedIndexChanged += new System.EventHandler(this.listBox_Below_Genre_txtBox_SelectedIndexChanged);
-            this.listBox_Below_Genre_txtBox.DoubleClick += new System.EventHandler(this.SelectTrack);
+            this.listBox_Below_Genre_txtBox.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.SelectTrack);
             // 
             // Genre_txtBox
             // 

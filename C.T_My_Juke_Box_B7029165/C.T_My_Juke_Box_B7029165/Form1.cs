@@ -119,7 +119,7 @@ namespace C.T_My_Juke_Box_B7029165
             //for(int i = 0; i < genres.Count(); i++) 
              // to get data out, to output to screen list of genres 
             {
-                Genre_txtBox.Text = genres[i].name;
+                Genre_txtBox.Text = genres[i].name; // gets the titles for text box first  
                 // Make a textbox and use genre[i].name // output to screen the name of tracks 
                 for (int j = 0; j < genres[i].tracks.Count(); j++)
                 {
@@ -133,9 +133,9 @@ namespace C.T_My_Juke_Box_B7029165
 
         private void hScrollBar1_On_JukeBoxForm_Scroll(object sender, ScrollEventArgs e)
         {
-            Genre_txtBox.Text = "";
-            listBox_Below_Genre_txtBox.Items.Clear();
-            PopulateTextBoxes(hScrollBar1_On_JukeBoxForm.Value);
+            Genre_txtBox.Text = ""; // this will clear the text box before populating 
+            listBox_Below_Genre_txtBox.Items.Clear(); // this will clear the list box before populating 
+            PopulateTextBoxes(hScrollBar1_On_JukeBoxForm.Value); // this will pass in 
         }
 
         private void listBox_Below_Genre_txtBox_SelectedIndexChanged(object sender, EventArgs e)
@@ -143,9 +143,29 @@ namespace C.T_My_Juke_Box_B7029165
 
         }
 
-        private void SelectTrack(object sender, EventArgs e)
+        private void SelectTrack(object sender, MouseEventArgs e) 
         {
-            // 1 if statements to go inside of here to make a track play when I double click on it, by using .append 
-        }
+            int index = this.listBox_Below_Genre_txtBox.IndexFromPoint(e.Location);
+            if (index != System.Windows.Forms.ListBox.NoMatches)
+            {
+                // // Contains the file name for my song.
+
+                string songName = genres[hScrollBar1_On_JukeBoxForm.Value].tracks[index]; // this is my song name 
+                System.Media.SoundPlayer player = new System.Media.SoundPlayer(@"c:\mywavfile.wav");
+                player.Play(); 
+            }
+            // 1 if statements to go inside of here is all i need 
+            //  to make a track play when I double click on it, by using .append 
+            /*
+            if (axWindowsMediaPlayer1.playState) = WMPLib.WMPPlayState.wmppsPlaying;
+            {
+                isPlaying = true; 
+            }
+            else
+            {
+            
+            }
+            */
+        }  
     }
 }
