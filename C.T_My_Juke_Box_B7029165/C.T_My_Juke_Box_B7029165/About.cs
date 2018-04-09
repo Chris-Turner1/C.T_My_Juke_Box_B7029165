@@ -31,5 +31,10 @@ namespace C.T_My_Juke_Box_B7029165
         {
             this.Close();
         }
+
+        private void Descritption_Of_Juke_Box_TextChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }

@@ -35,7 +35,6 @@
             this.Ok_Button = new System.Windows.Forms.Button();
             this.Description_Of_Juke_Box = new System.Windows.Forms.Label();
             this.Descritption_Of_Juke_Box = new System.Windows.Forms.TextBox();
-            this.vScrollBar1 = new System.Windows.Forms.VScrollBar();
             ((System.ComponentModel.ISupportInitialize)(this.Juke_BoxpictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -88,27 +87,21 @@
             // 
             // Descritption_Of_Juke_Box
             // 
-            this.Descritption_Of_Juke_Box.Location = new System.Drawing.Point(367, 137);
+            this.Descritption_Of_Juke_Box.Location = new System.Drawing.Point(370, 134);
             this.Descritption_Of_Juke_Box.Multiline = true;
             this.Descritption_Of_Juke_Box.Name = "Descritption_Of_Juke_Box";
+            this.Descritption_Of_Juke_Box.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.Descritption_Of_Juke_Box.Size = new System.Drawing.Size(205, 199);
             this.Descritption_Of_Juke_Box.TabIndex = 5;
             this.Descritption_Of_Juke_Box.Text = resources.GetString("Descritption_Of_Juke_Box.Text");
             this.Descritption_Of_Juke_Box.UseWaitCursor = true;
-            // 
-            // vScrollBar1
-            // 
-            this.vScrollBar1.Location = new System.Drawing.Point(575, 137);
-            this.vScrollBar1.Name = "vScrollBar1";
-            this.vScrollBar1.Size = new System.Drawing.Size(20, 199);
-            this.vScrollBar1.TabIndex = 6;
+            this.Descritption_Of_Juke_Box.TextChanged += new System.EventHandler(this.Descritption_Of_Juke_Box_TextChanged);
             // 
             // AboutForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(610, 495);
-            this.Controls.Add(this.vScrollBar1);
             this.Controls.Add(this.Descritption_Of_Juke_Box);
             this.Controls.Add(this.Description_Of_Juke_Box);
             this.Controls.Add(this.Ok_Button);
@@ -117,7 +110,8 @@
             this.Controls.Add(this.My_Juke_Box_Label);
             this.MaximizeBox = false;
             this.Name = "AboutForm";
-            this.Text = "About";
+            this.Text = "About                                                                            " +
+    "           ";
             this.Load += new System.EventHandler(this.AboutForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.Juke_BoxpictureBox1)).EndInit();
             this.ResumeLayout(false);
@@ -133,6 +127,5 @@
         private System.Windows.Forms.Button Ok_Button;
         private System.Windows.Forms.Label Description_Of_Juke_Box;
         private System.Windows.Forms.TextBox Descritption_Of_Juke_Box;
-        private System.Windows.Forms.VScrollBar vScrollBar1;
     }
 }

@@ -33,12 +33,12 @@
             this.PlayList = new System.Windows.Forms.ListBox();
             this.PresentlyPlaying = new System.Windows.Forms.TextBox();
             this.listBox_Below_Genre_txtBox = new System.Windows.Forms.ListBox();
-            this.hScrollBar1_On_JukeBoxForm = new System.Windows.Forms.HScrollBar();
             this.Genre_txtBox = new System.Windows.Forms.TextBox();
             this.CopyRightNoticeLabel = new System.Windows.Forms.Label();
             this.MenuStrip_For_Juke_Box_Form = new System.Windows.Forms.MenuStrip();
             this.setUpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.hScrollBar1_On_JukeBoxForm = new System.Windows.Forms.HScrollBar();
             ((System.ComponentModel.ISupportInitialize)(this.axWindowsMediaPlayer1)).BeginInit();
             this.MenuStrip_For_Juke_Box_Form.SuspendLayout();
             this.SuspendLayout();
@@ -80,17 +80,13 @@
             this.listBox_Below_Genre_txtBox.FormattingEnabled = true;
             this.listBox_Below_Genre_txtBox.ItemHeight = 16;
             this.listBox_Below_Genre_txtBox.Location = new System.Drawing.Point(205, 226);
+            this.listBox_Below_Genre_txtBox.MultiColumn = true;
             this.listBox_Below_Genre_txtBox.Name = "listBox_Below_Genre_txtBox";
             this.listBox_Below_Genre_txtBox.SelectionMode = System.Windows.Forms.SelectionMode.None;
             this.listBox_Below_Genre_txtBox.Size = new System.Drawing.Size(227, 84);
             this.listBox_Below_Genre_txtBox.TabIndex = 4;
-            // 
-            // hScrollBar1_On_JukeBoxForm
-            // 
-            this.hScrollBar1_On_JukeBoxForm.Location = new System.Drawing.Point(193, 313);
-            this.hScrollBar1_On_JukeBoxForm.Name = "hScrollBar1_On_JukeBoxForm";
-            this.hScrollBar1_On_JukeBoxForm.Size = new System.Drawing.Size(250, 25);
-            this.hScrollBar1_On_JukeBoxForm.TabIndex = 5;
+            this.listBox_Below_Genre_txtBox.SelectedIndexChanged += new System.EventHandler(this.listBox_Below_Genre_txtBox_SelectedIndexChanged);
+            this.listBox_Below_Genre_txtBox.DoubleClick += new System.EventHandler(this.SelectTrack);
             // 
             // Genre_txtBox
             // 
@@ -99,7 +95,7 @@
             this.Genre_txtBox.Multiline = true;
             this.Genre_txtBox.Name = "Genre_txtBox";
             this.Genre_txtBox.ReadOnly = true;
-            this.Genre_txtBox.Size = new System.Drawing.Size(219, 34);
+            this.Genre_txtBox.Size = new System.Drawing.Size(225, 34);
             this.Genre_txtBox.TabIndex = 6;
             // 
             // CopyRightNoticeLabel
@@ -140,6 +136,15 @@
             this.aboutToolStripMenuItem.Text = "About";
             this.aboutToolStripMenuItem.Click += new System.EventHandler(this.aboutToolStripMenuItem_Click);
             // 
+            // hScrollBar1_On_JukeBoxForm
+            // 
+            this.hScrollBar1_On_JukeBoxForm.LargeChange = 1;
+            this.hScrollBar1_On_JukeBoxForm.Location = new System.Drawing.Point(205, 310);
+            this.hScrollBar1_On_JukeBoxForm.Name = "hScrollBar1_On_JukeBoxForm";
+            this.hScrollBar1_On_JukeBoxForm.Size = new System.Drawing.Size(230, 25);
+            this.hScrollBar1_On_JukeBoxForm.TabIndex = 5;
+            this.hScrollBar1_On_JukeBoxForm.Scroll += new System.Windows.Forms.ScrollEventHandler(this.hScrollBar1_On_JukeBoxForm_Scroll);
+            // 
             // JukeBoxForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -175,12 +180,12 @@
         private System.Windows.Forms.ListBox PlayList;
         private System.Windows.Forms.TextBox PresentlyPlaying;
         private System.Windows.Forms.ListBox listBox_Below_Genre_txtBox;
-        private System.Windows.Forms.HScrollBar hScrollBar1_On_JukeBoxForm;
         private System.Windows.Forms.TextBox Genre_txtBox;
         private System.Windows.Forms.Label CopyRightNoticeLabel;
         private System.Windows.Forms.MenuStrip MenuStrip_For_Juke_Box_Form;
         private System.Windows.Forms.ToolStripMenuItem setUpToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem aboutToolStripMenuItem;
+        private System.Windows.Forms.HScrollBar hScrollBar1_On_JukeBoxForm;
     }
 }
 

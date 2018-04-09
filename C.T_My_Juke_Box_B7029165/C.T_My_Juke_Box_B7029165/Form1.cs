@@ -29,10 +29,10 @@ namespace C.T_My_Juke_Box_B7029165
         {
             InitializeComponent();          
 
-            ReadMediaFile(); // empty construct 
+            ReadMediaFile(); // empty construct b/c no value 
             // shouldn't have to look at this function now; its done
 
-            PopulateTextBoxes(); // Fuction (method) to read the text
+            PopulateTextBoxes(0); // Fuction (method) to read the text
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -91,7 +91,7 @@ namespace C.T_My_Juke_Box_B7029165
                 // an Array is in square brackets 
 
                 iLineCounter++;
-
+                
                 GenreContents genreContents;
                 genreContents.name = lines.ToArray()[iLineCounter]; // name of genre 
                 genreContents.tracks = new List<string>(); // name of track 
@@ -106,27 +106,46 @@ namespace C.T_My_Juke_Box_B7029165
                 }
                genres[genreNumber] = genreContents;
             }
+            hScrollBar1_On_JukeBoxForm.Maximum = numberOfGenres - 1;
         }
 
-        void PopulateTextBoxes() 
+
+        void PopulateTextBoxes(int i) 
         {
             // Genre_txtBox.Text = genre [genre]. 
             // for each genre, this is the textbox I am trying to load . name at the end 
             // Output to screen using genre[0] // zero is the first genre 
 
-            for(int i = 0; i < genres.Count(); i++) 
+            //for(int i = 0; i < genres.Count(); i++) 
              // to get data out, to output to screen list of genres 
             {
+                Genre_txtBox.Text = genres[i].name;
                 // Make a textbox and use genre[i].name // output to screen the name of tracks 
-                for(int j = 0; j < genres[i].tracks.Count(); j++)
+                for (int j = 0; j < genres[i].tracks.Count(); j++)
                 {
                     // Add each track to the textbox using genres[i].tracks[j]
-                    Genre_txtBox.Text += genres[i].name + Environment.NewLine;
-                    listBox_Below_Genre_txtBox.Text += genres[j].tracks + Environment.NewLine; 
+                    listBox_Below_Genre_txtBox.Items.Add(genres[i].tracks[j].ToString()); 
                     //  Environment.Newline will bring out the name and tracks of genres
                     // onto new lines in the text box if multiline is set to "true" in properties
                 }
             }
+        }
+
+        private void hScrollBar1_On_JukeBoxForm_Scroll(object sender, ScrollEventArgs e)
+        {
+            Genre_txtBox.Text = "";
+            listBox_Below_Genre_txtBox.Items.Clear();
+            PopulateTextBoxes(hScrollBar1_On_JukeBoxForm.Value);
+        }
+
+        private void listBox_Below_Genre_txtBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void SelectTrack(object sender, EventArgs e)
+        {
+            // 1 if statements to go inside of here to make a track play when I double click on it, by using .append 
         }
     }
 }

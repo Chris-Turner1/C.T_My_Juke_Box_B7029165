@@ -118,10 +118,16 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="Descritption_Of_Juke_Box.Text" xml:space="preserve">
-    <value>Description:                                          
+    <value>Description:    
 
-The "My Juke Box v2.0 application was developed as an example to showcase my studies as a first year graduate on the mdoule "Programming for Computing at Sheffield Hallam University.           
+The "My Juke Box v2.0 application was developed as an example to showcase my studies as a first year graduate on the module "Programming for Computing" at Sheffield Hallam University.     
 
-The application shows the use of Arrays </value>
+The application shows the use of Arrays and in this case I have coded a dynamic array where I have made: a list, of a list, inside a list. 
+
+As a result, Inside the source code, I made a "struct" which I initialised at the very top of my code called "GenreContents" and it is here, inside the struct, I have named my variable "genres".  Inside here, is where all my music data is kept such as: 'genre titles' as well as the `tracks` by using a "Media.txt" file I had created in notepad. 
+
+In addition this would allow me to parse the data out of the "Media.txt" file using "Get Current Directory" to inject the information into the source code.  
+
+In essence, the reason for making the dynamic array was so the "end user" could essentially add in their own tracks if they should wish to and this is achieved by making "for loops" to allow new data to be inserted without the need of the programmer.        </value>
   </data>
 </root>
