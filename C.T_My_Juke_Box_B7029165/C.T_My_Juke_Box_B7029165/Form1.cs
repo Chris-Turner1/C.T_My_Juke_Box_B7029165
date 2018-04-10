@@ -141,7 +141,7 @@ namespace C.T_My_Juke_Box_B7029165
         {
             Genre_txtBox.Text = ""; // this will clear the text box before populating 
             listBox_Below_Genre_txtBox.Items.Clear(); // this will clear the list box before populating 
-            PopulateTextBoxes(hScrollBar1_On_JukeBoxForm.Value); // this will pass in 
+            PopulateTextBoxes(hScrollBar1_On_JukeBoxForm.Value); // this will pass through populate text box
         }
 
         private void listBox_Below_Genre_txtBox_SelectedIndexChanged(object sender, EventArgs e)
@@ -149,37 +149,25 @@ namespace C.T_My_Juke_Box_B7029165
 
         }
 
-        private void SelectTrack(object sender, MouseEventArgs e)
+        private void SelectTrack(object sender, MouseEventArgs e) // Mouse event argument for mouse double click
         {
             int index = this.listBox_Below_Genre_txtBox.IndexFromPoint(e.Location);
             if (index != System.Windows.Forms.ListBox.NoMatches)
             {
-                // Contains the file name for my song.
+                // Contains the file name for my song; this is my track file name 
 
                 string songName = genres[hScrollBar1_On_JukeBoxForm.Value].tracks[index]; // this is my song name 
-                songName = Directory.GetCurrentDirectory() + "\\Music\\" + songName;
+                songName = Directory.GetCurrentDirectory() + "\\Music\\" + songName; // song name is what I need to pass to boxes 
 
 
-                Console.WriteLine(songName);
+                Console.WriteLine(songName); // this is a debug feature to display when a song is playing  
 
                 WMPLib.WindowsMediaPlayer wplayer = new WMPLib.WindowsMediaPlayer();
 
-                // wplayer.URL = @"C:\Users\Student\Documents\GitHub\C.T_My_Juke_Box_B7029165\C.T_My_Juke_Box_B7029165\C.T_My_Juke_Box_B7029165\Music\Amy Winehouse - Rehab.mp3";
+               
                 wplayer.URL = songName;
                 wplayer.controls.play();
 
-                /*
-                //player.Play(); 
-                WMPLib.WindowsMediaPlayer wplayer = new WMPLib.WindowsMediaPlayer();
-
-                wplayer.URL = Directory.GetCurrentDirectory() + "\\Music\\" + "songName";
-                wplayer.controls.play();
-
-                                                                                      
-                WMPLib.WindowsMediaPlayer wplayer = new WMPLib.WindowsMediaPlayer();
-
-                wplayer.URL = @"C:\Users\Student\Documents\GitHub\C.T_My_Juke_Box_B7029165\C.T_My_Juke_Box_B7029165\C.T_My_Juke_Box_B7029165\Music\Amy Winehouse - Rehab.mp3";
-                wplayer.controls.play();
 
             //System.Media.SoundPlayer player = new System.Media.SoundPlayer(@"c:\Music\Media.txt\Amy Winehouse - Rehab.wav");
             //player.Play();
@@ -195,11 +183,12 @@ namespace C.T_My_Juke_Box_B7029165
             else
             {
             
-            }*/
-
-
             }
+            */
+
+           
         }
     }
 }
+
 
