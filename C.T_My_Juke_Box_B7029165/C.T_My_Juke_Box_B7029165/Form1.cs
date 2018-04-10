@@ -25,7 +25,7 @@ namespace C.T_My_Juke_Box_B7029165
     public partial class JukeBoxForm : Form
     { // squiggly brack and underneath it is going inside that method
         List<GenreContents> genres; // list of genre contents called genres
-        // and all the data is inside genres 
+        // and all the data is inside genres; it's my song catalog essesntially 
 
         List<string> playlist;
 
@@ -38,7 +38,7 @@ namespace C.T_My_Juke_Box_B7029165
 
             PopulateTextBoxes(0); // Fuction (method) to read the text
 
-            playlist = new List<string>();
+            playlist = new List<string>(); // making a literal playlist to play the else if statements in 
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -71,41 +71,40 @@ namespace C.T_My_Juke_Box_B7029165
 
         private void ReadMediaFile() // inside ReadMediaFile 
         {
-            genres = new List<GenreContents>(); // all genres in genre of contents 
+            genres = new List<GenreContents>(); // all genres in genre of contents; genres is my songs cataloague essesntially 
 
             IEnumerable<string> lines = System.IO.File.ReadLines(Directory.GetCurrentDirectory() + "\\Music\\" + "Media.txt");
             // the above is to read where the media file is coming from and Ienumerable
             // will bring out the data from the folders for the "For loops"
+            // "lines" is where all the information as been parsed into but no longer exists at the end of this function 
+            // as genres will be the where 
 
             int iLineCounter = 0; // zero is the number of titles 
 
-            int numberOfGenres = Convert.ToInt32(lines.ToArray()[0]);
-            // converts integer to string 
-            for (int i = 0; i < numberOfGenres; i++)
-            // number of genres is less than number of titles then increment
+            int numberOfGenres = Convert.ToInt32(lines.ToArray()[0]);  // converts integer to string
+
+            for (int i = 0; i < numberOfGenres; i++) // number of genres is less than number of titles then increment
+
             {
                 genres.Add(new GenreContents()); // keeps adding another genre if so 
             }
 
 
             iLineCounter = 1; // 1 is the number of tracks 
-            for (int genreNumber = 0; genreNumber < numberOfGenres; genreNumber++)
-            // genre number is less than number of genres, 
-            // genre number increment to allow to add more  
+            for (int genreNumber = 0; genreNumber < numberOfGenres; genreNumber++)  // genre number is less than number of genres, 
+                                                                                    // genre number increment to allow to add more  
             {
-                int numberOfTracks = Convert.ToInt32(lines.ToArray()[iLineCounter]);
-                // an Array is in square brackets 
-
-                iLineCounter++;
+                int numberOfTracks = Convert.ToInt32(lines.ToArray()[iLineCounter]); // an Array is in square brackets 
+                
+                iLineCounter++; // LineCounter helps bring out the information 
 
                 GenreContents genreContents;
-                genreContents.name = lines.ToArray()[iLineCounter]; // name of genre 
+                genreContents.name = lines.ToArray()[iLineCounter]; // name of genre title 
                 genreContents.tracks = new List<string>(); // name of track 
 
                 iLineCounter++;
-                for (int i = 0; i < numberOfTracks; i++)
-                // "iLineCounter++" 
-                //increment iLineCounter if number of tracks is less then the number of genres 
+                for (int i = 0; i < numberOfTracks; i++) // "iLineCounter++" increment iLineCounter if number of tracks is less than
+                                                         // the number of genres 
                 {
                     genreContents.tracks.Add(lines.ToArray()[iLineCounter]);
                     iLineCounter++;
@@ -168,7 +167,7 @@ namespace C.T_My_Juke_Box_B7029165
                 wplayer.URL = songName;
                 wplayer.controls.play();
 
-
+            
             //System.Media.SoundPlayer player = new System.Media.SoundPlayer(@"c:\Music\Media.txt\Amy Winehouse - Rehab.wav");
             //player.Play();
                 
