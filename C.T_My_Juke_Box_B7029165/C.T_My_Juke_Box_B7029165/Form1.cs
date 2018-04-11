@@ -16,25 +16,26 @@ using WMPLib;
 
 namespace C.T_My_Juke_Box_B7029165
 {
-    struct GenreContents
+    struct GenreContents // using structure (value type) to make a copy of my list of genres into my code called GenreContents
     {
-        public string name;
-        public List<string> tracks; // list of strings (genres) called tracks 
+        public string name; // name of genre title inside genre contents 
+        public List<string> tracks; // list of strings (genres) called tracks for the track name of GenreContents
     }
 
     public partial class JukeBoxForm : Form
-    { // squiggly brack and underneath it is going inside that method
-        List<GenreContents> genres; // list of genre contents called genres
-        // and all the data is inside genres; it's my song catalog essesntially 
+    { // squiggly bracket and underneath it is going inside that method
+        List<GenreContents> genres; // list of genre contents called genres and all the data is inside genres
+                                    // it's my song catalog essesntially, so every name of genre has a list of tracks (3 lists)
+                                    // each genre title has a its own list of tracks basically 
 
-        List<string> playlist;
+        List<string> playlist; // a list of string called playlist 
 
         public JukeBoxForm() // initialising in the struct 
         {
             InitializeComponent();
 
             ReadMediaFile(); // empty construct b/c no value 
-            // shouldn't have to look at this function now; its done
+                            // shouldn't have to look at this function now; its done
 
             PopulateTextBoxes(0); // Fuction (method) to read the text
 
@@ -76,8 +77,8 @@ namespace C.T_My_Juke_Box_B7029165
             IEnumerable<string> lines = System.IO.File.ReadLines(Directory.GetCurrentDirectory() + "\\Music\\" + "Media.txt");
             // the above is to read where the media file is coming from and Ienumerable
             // will bring out the data from the folders for the "For loops"
-            // "lines" is where all the information as been parsed into but no longer exists at the end of this function 
-            // as genres will be the where 
+            // "lines" is where all the information has been parsed into but no longer exists at the end of this function 
+            // as genres will be the where. Lines is basically the media.txt file 
 
             int iLineCounter = 0; // zero is the number of titles 
 
@@ -111,7 +112,7 @@ namespace C.T_My_Juke_Box_B7029165
                 }
                 genres[genreNumber] = genreContents;
             }
-            hScrollBar1_On_JukeBoxForm.Maximum = numberOfGenres - 1;
+            hScrollBar1_On_JukeBoxForm.Maximum = numberOfGenres - 1; // ran out of memory on screen so added another value 
         }
 
 
@@ -125,7 +126,7 @@ namespace C.T_My_Juke_Box_B7029165
             // to get data out, to output to screen list of genres 
             {
                 Genre_txtBox.Text = genres[i].name; // gets the titles for text box first  
-                // Make a textbox and use genre[i].name // output to screen the name of tracks 
+                                                   // Make a textbox and use genre[i].name // output to screen the name of tracks 
                 for (int j = 0; j < genres[i].tracks.Count(); j++)
                 {
                     // Add each track to the textbox using genres[i].tracks[j]
@@ -155,17 +156,28 @@ namespace C.T_My_Juke_Box_B7029165
             {
                 // Contains the file name for my song; this is my track file name 
 
-                string songName = genres[hScrollBar1_On_JukeBoxForm.Value].tracks[index]; // this is my song name 
-                songName = Directory.GetCurrentDirectory() + "\\Music\\" + songName; // song name is what I need to pass to boxes 
+                string songName = genres[hScrollBar1_On_JukeBoxForm.Value].tracks[index]; // this is my song name and index passes that
+                PresentlyPlaying.Text = songName;                                         //.Value helps to pass through what genre we're on
+                songName = Directory.GetCurrentDirectory() + "\\Music\\" + songName; // song name is what I need to pass to boxes now 
 
 
                 Console.WriteLine(songName); // this is a debug feature to display when a song is playing  
 
                 WMPLib.WindowsMediaPlayer wplayer = new WMPLib.WindowsMediaPlayer();
 
-               
+                genres[hScrollBar1_On_JukeBoxForm.Value].tracks.RemoveAt(index); // this will help refresh 
+                listBox_Below_Genre_txtBox.Items.Clear(); // this will clear the list box before populating
+                for (int j = 0; j < genres[hScrollBar1_On_JukeBoxForm.Value].tracks.Count; j++) // genres j 
+                {
+                    // Add each track to the textbox using genres[i].tracks[j]
+                    listBox_Below_Genre_txtBox.Items.Add(genres[hScrollBar1_On_JukeBoxForm.Value].tracks[j].ToString());
+                    //  Environment.Newline will bring out the name and tracks of genres
+                    // onto new lines in the text box if multiline is set to "true" in properties
+                }
+
                 wplayer.URL = songName;
                 wplayer.controls.play();
+
 
             
             //System.Media.SoundPlayer player = new System.Media.SoundPlayer(@"c:\Music\Media.txt\Amy Winehouse - Rehab.wav");
