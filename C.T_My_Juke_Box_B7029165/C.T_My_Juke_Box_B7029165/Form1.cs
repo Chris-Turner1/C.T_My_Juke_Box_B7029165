@@ -7,7 +7,8 @@ using WMPLib;
 using System.Timers;
 
 namespace C.T_My_Juke_Box_B7029165
-{   // using structure (value type) to make a copy of my list of genres into my code called GenreContents
+{   // using structure (value type) to make a copy of 
+    //my list of genres into my code called GenreContents
     struct GenreContents 
     {
         public string name; // name of genre title inside genre contents 
@@ -67,8 +68,8 @@ namespace C.T_My_Juke_Box_B7029165
             wplayer.controls.play();
 
 
-            // If anything is playing don't do anything, return is to get out of the function when finished 
-            // If count greater than 0 then there is something to be played, if 0 then get out of function
+         // If anything is playing don't do anything, return is to get out of the function when finished 
+         // If count greater than 0 then there is something to be played, if 0 then get out of function
         }
 
         private void aboutToolStripMenuItem_Click(object sender, EventArgs e)
@@ -193,7 +194,8 @@ namespace C.T_My_Juke_Box_B7029165
                     for (int j = 0; j < genres[hScrollBar1_On_JukeBoxForm.Value].tracks.Count; j++) 
                     {
                         // Add each track to the textbox using genres[i].tracks[j]
-                        listBox_Below_Genre_txtBox.Items.Add(genres[hScrollBar1_On_JukeBoxForm.Value].tracks[j].ToString());
+                        listBox_Below_Genre_txtBox.Items.Add
+                            (genres[hScrollBar1_On_JukeBoxForm.Value].tracks[j].ToString());
                        
                     }
 
