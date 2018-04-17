@@ -52,7 +52,6 @@
             this.axWindowsMediaPlayer1.Size = new System.Drawing.Size(242, 45);
             this.axWindowsMediaPlayer1.TabIndex = 0;
             this.axWindowsMediaPlayer1.Visible = false;
-            this.axWindowsMediaPlayer1.Enter += new System.EventHandler(this.axWindowsMediaPlayer1_Enter);
             // 
             // PlayList
             // 
@@ -85,7 +84,6 @@
             this.listBox_Below_Genre_txtBox.SelectionMode = System.Windows.Forms.SelectionMode.None;
             this.listBox_Below_Genre_txtBox.Size = new System.Drawing.Size(227, 84);
             this.listBox_Below_Genre_txtBox.TabIndex = 4;
-            this.listBox_Below_Genre_txtBox.SelectedIndexChanged += new System.EventHandler(this.listBox_Below_Genre_txtBox_SelectedIndexChanged);
             this.listBox_Below_Genre_txtBox.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.SelectTrack);
             // 
             // Genre_txtBox
@@ -120,7 +118,6 @@
             this.MenuStrip_For_Juke_Box_Form.Name = "MenuStrip_For_Juke_Box_Form";
             this.MenuStrip_For_Juke_Box_Form.Size = new System.Drawing.Size(644, 28);
             this.MenuStrip_For_Juke_Box_Form.TabIndex = 8;
-            this.MenuStrip_For_Juke_Box_Form.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.MenuStrip_For_Juke_Box_Form_ItemClicked);
             // 
             // setUpToolStripMenuItem
             // 
@@ -165,7 +162,6 @@
             this.Name = "JukeBoxForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "My Juke Box v2.0";
-            this.Load += new System.EventHandler(this.Form1_Load);
             ((System.ComponentModel.ISupportInitialize)(this.axWindowsMediaPlayer1)).EndInit();
             this.MenuStrip_For_Juke_Box_Form.ResumeLayout(false);
             this.MenuStrip_For_Juke_Box_Form.PerformLayout();

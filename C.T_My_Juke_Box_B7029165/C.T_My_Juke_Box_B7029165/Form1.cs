@@ -1,18 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.IO; // used for dealing with adding files from media txt file 
-using MyDialogs; // don't need this, used for inserting text boxes 
+using System.IO; // used for dealing with adding files from media.txt file 
 using System.Windows.Forms;
-
 using WMPLib;
-
-
+using System.Timers;
 
 namespace C.T_My_Juke_Box_B7029165
 {
@@ -28,7 +20,11 @@ namespace C.T_My_Juke_Box_B7029165
                                     // it's my song catalog essesntially, so every name of genre has a list of tracks (3 lists)
                                     // each genre title has a its own list of tracks basically 
 
-        List<string> playlist; // a list of string called playlist 
+        WMPLib.WindowsMediaPlayer wplayer = new WMPLib.WindowsMediaPlayer();
+
+        System.Timers.Timer playWaitingTrackTimer = new System.Timers.Timer(3000);
+        int currentTrack = 0; // nothing at currentTrack
+        // a timer has been set-up to run every 3 seconds as a member of the clack which has been declared
 
         public JukeBoxForm() // initialising in the struct 
         {
@@ -39,18 +35,36 @@ namespace C.T_My_Juke_Box_B7029165
 
             PopulateTextBoxes(0); // Fuction (method) to read the text
 
-            playlist = new List<string>(); // making a literal playlist to play the else if statements in 
+            playWaitingTrackTimer.Elapsed += CheckForWaitingTrack;
+            playWaitingTrackTimer.AutoReset = true;
+            playWaitingTrackTimer.Enabled = true;
+          //Elapsed is used to check for the track every 3 seconds 
+          //AutoReset everytime the timer hits 3000
+          //Enabled timer so it stays always running in the background
+          // Reference to timer function: https://msdn.microsoft.com/en-us/library/system.timers.timer(v=vs.110).aspx
         }
-
-        private void Form1_Load(object sender, EventArgs e)
+        
+        // function for the timer to run below to allow tracks to go into playlist, list box
+        void CheckForWaitingTrack(Object source, ElapsedEventArgs e) 
         {
+            if (wplayer.playState == WMPPlayState.wmppsPlaying) { Console.WriteLine("still playing"); return; } 
+            if (PlayList.Items.Count == 0) return; 
+            if (currentTrack == PlayList.Items.Count) return;
+
+            // at this point, we know that nothing is playing
+            // and we know that there is something waiting in the playlist
+            
+            string songName = PlayList.Items[currentTrack].ToString(); 
+            Console.WriteLine("about to play new song..." + songName);
+            currentTrack += 1; // increment a track by 1  
+            songName = Directory.GetCurrentDirectory() + "\\Music\\" + songName;
+            
+            wplayer.URL = songName;
+            wplayer.controls.play();
 
 
-        }
-
-        private void axWindowsMediaPlayer1_Enter(object sender, EventArgs e)
-        {
-
+            // If anything is playing don't do anything, return is to get out of the function when finished 
+            // If count greater than 0 then there is something to be played, if 0 then get out of function
         }
 
         private void aboutToolStripMenuItem_Click(object sender, EventArgs e)
@@ -59,10 +73,6 @@ namespace C.T_My_Juke_Box_B7029165
             about.ShowDialog();
         }
         // "new" into the memory known as the heap from the stack
-        private void MenuStrip_For_Juke_Box_Form_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
-        {
-
-        }
 
         private void setUpToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -116,7 +126,7 @@ namespace C.T_My_Juke_Box_B7029165
         }
 
 
-        void PopulateTextBoxes(int i)
+        void PopulateTextBoxes(int i) // passing title of genres and tracks from the genres from array
         {
             // Genre_txtBox.Text = genre [genre]. 
             // for each genre, this is the textbox I am trying to load . name at the end 
@@ -144,60 +154,59 @@ namespace C.T_My_Juke_Box_B7029165
             PopulateTextBoxes(hScrollBar1_On_JukeBoxForm.Value); // this will pass through populate text box
         }
 
-        private void listBox_Below_Genre_txtBox_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-
         private void SelectTrack(object sender, MouseEventArgs e) // Mouse event argument for mouse double click
         {
-            int index = this.listBox_Below_Genre_txtBox.IndexFromPoint(e.Location);
-            if (index != System.Windows.Forms.ListBox.NoMatches)
+
+            if (wplayer.playState != WMPPlayState.wmppsPlaying) // checking the player, if not playing then false 
             {
-                // Contains the file name for my song; this is my track file name 
-
-                string songName = genres[hScrollBar1_On_JukeBoxForm.Value].tracks[index]; // this is my song name and index passes that
-                PresentlyPlaying.Text = songName;                                         //.Value helps to pass through what genre we're on
-                songName = Directory.GetCurrentDirectory() + "\\Music\\" + songName; // song name is what I need to pass to boxes now 
-
-
-                Console.WriteLine(songName); // this is a debug feature to display when a song is playing  
-
-                WMPLib.WindowsMediaPlayer wplayer = new WMPLib.WindowsMediaPlayer();
-
-                genres[hScrollBar1_On_JukeBoxForm.Value].tracks.RemoveAt(index); // this will help refresh 
-                listBox_Below_Genre_txtBox.Items.Clear(); // this will clear the list box before populating
-                for (int j = 0; j < genres[hScrollBar1_On_JukeBoxForm.Value].tracks.Count; j++) // genres j 
+                int index = this.listBox_Below_Genre_txtBox.IndexFromPoint(e.Location);
+                if (index != System.Windows.Forms.ListBox.NoMatches)
                 {
-                    // Add each track to the textbox using genres[i].tracks[j]
-                    listBox_Below_Genre_txtBox.Items.Add(genres[hScrollBar1_On_JukeBoxForm.Value].tracks[j].ToString());
-                    //  Environment.Newline will bring out the name and tracks of genres
-                    // onto new lines in the text box if multiline is set to "true" in properties
+
+                    // Contains the file name for my song; this is my track file name 
+                    string songName = genres[hScrollBar1_On_JukeBoxForm.Value].tracks[index]; // this is my song name and index passes that
+                    PresentlyPlaying.Text = songName;                                         //.Value helps to pass through what genre we're on
+                    songName = Directory.GetCurrentDirectory() + "\\Music\\" + songName; // song name is what I need to pass to boxes now 
+
+
+                    Console.WriteLine(songName); // this is a debug feature to display when a song is playing I need to remove this
+
+                    genres[hScrollBar1_On_JukeBoxForm.Value].tracks.RemoveAt(index); // this will help refresh "RemoveAt"
+                    listBox_Below_Genre_txtBox.Items.Clear(); // this will clear the list box before populating
+                    for (int j = 0; j < genres[hScrollBar1_On_JukeBoxForm.Value].tracks.Count; j++) // genres j is track from genres
+                    {
+                        // Add each track to the textbox using genres[i].tracks[j]
+                        listBox_Below_Genre_txtBox.Items.Add(genres[hScrollBar1_On_JukeBoxForm.Value].tracks[j].ToString());
+                       
+                    }
+
+                    wplayer.URL = songName;
+                    wplayer.controls.play();
+
+                    //PlayList.Items.Add(songName);
+                    //playWaitingTrackTimer.Start();
+                    //player.Play();
+
                 }
-
-                wplayer.URL = songName;
-                wplayer.controls.play();
-
-
-            
-            //System.Media.SoundPlayer player = new System.Media.SoundPlayer(@"c:\Music\Media.txt\Amy Winehouse - Rehab.wav");
-            //player.Play();
-                
             }
-            // 1 if statements to go inside of here is all i need 
-            //  to make a track play when I double click on it, by using .append 
-            /*
-            if (axWindowsMediaPlayer1.playState) = WMPLib.WMPPlayState.wmppsPlaying;
+            else // this is adding a function and this puts tracks into the list box below (the playlist)
             {
-                isPlaying = true; 
-            }
-            else
-            {
-            
-            }
-            */
+                int index = this.listBox_Below_Genre_txtBox.IndexFromPoint(e.Location);
+                if (index != System.Windows.Forms.ListBox.NoMatches)
+                {
 
-           
+                    // Contains the file name for my song; this is my track file name 
+                    string songName = genres[hScrollBar1_On_JukeBoxForm.Value].tracks[index];
+                    
+                    PlayList.Items.Add(songName);
+
+
+                    // Populates songs into playlist
+                    // And this will play the next song when its been double clicked to the playlist
+                  
+                }
+            }
+
         }
     }
 }
